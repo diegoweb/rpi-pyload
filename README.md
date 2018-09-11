@@ -1,66 +1,48 @@
-PyLoad for Raspberry Pi (as Dock)
+pyLoad for Raspberry Pi (as Dock)
 =========
-This is a fork of writl/pyload (https://github.com/obi12341/docker-pyload), which brings this Dock to the Raspberry Pi.
-It was already forked by githubato (https://github.com/githubato/dockerfile-pyload), but recent changes of writl were not included.
 
-Introduction
-----
 pyLoad is a fast, lightweight and full featured download manager for many One-Click-Hoster, container formats like DLC, video sites or just plain http/ftp links. It aims for low hardware requirements and platform independence to be runnable on all kind of systems (desktop pc, netbook, NAS, router).
+Despite its strict restriction it is packed full of features just like webinterface, captcha recognition, unrar and much more. 
 
-Despite its strict restriction it is packed full of features just like webinterface, captcha recognition, unrar and much more.
+pyLoad is divided into core and clients, to make it easily remote accessible. Currently there are a webinterface, command line interface, a GUI written in Qt and an Android client. Screenshots can be found [here].
 
-pyLoad is divided into core and clients, to make it easily remote accessible. Currently there are a webinterface, command line interface, and a GUI written in Qt.
+Source [Official pyLoad Website]
 
-Source [official pyload]
-
-Install
+Basic Install and Running
 ----
 Install is easy as all docker images
 
 ```sh
-docker pull dastrasmue/rpi-pyload
+docker pull diegoweb/rpi-pyload
 ```
 
-Running
-----
+Running is easy as all docker images
 
 ```sh
-docker run -d -P dastrasmue/rpi-pyload
+docker run -d -P diegoweb/rpi-pyload
 ```
 
 Configuration
 ----
-You can link your Downloads to your host very easy like that:
-
+Set your UID/GID (user in docker host who will run the container), DOWNLOAD and CONFIG folders from the example below (do not forget to remove <> for each field):
 ```sh
-docker run -d -v <host directoy>:/opt/pyload/Downloads -P dastrasmue/rpi-pyload
-```
-Notice to replace ```<host directory>``` with your directory path on the host. So if you want to store your Downloads in ```/tmp/Downloads``` then your command would look like this:
-
-```sh
-docker run -d -v /tmp/Downloads:/opt/pyload/Downloads -P dastrasmue/rpi-pyload
-```
-If you want to have your configuration persistent you have to link the configuration directory outside of the container. This can happen like this:
-
-```sh
-docker run -d -v <host directoy>:/opt/pyload/pyload-config -P dastrasmue/rpi-pyload
+docker run -d -p 8000:8000 -p 7227:7227 -e UID=<uid> -e GID=<gid> -v <download_folder>:/opt/pyload/Downloads -v <config_folder>:/opt/pyload/pyload-config --name pyload diegoweb/rpi-pyload
 ```
 
-Example, if all possible config options are used:
+In Raspberry Pi for example, if you are running Raspbian Default Image, you can use:
 ```sh
-docker run -d -p 8000:8000 -p 7227:7227 -v /opt/pyload/downloads:/opt/pyload/Downloads -v /opt/pyload/config:/opt/pyload/pyload-config --name pyload dastrasmue/rpi-pyload
+docker run -d -p 8000:8000 -p 7227:7227 -e UID=1000 -e GID=1000 -v /home/pi/downloads:/opt/pyload/Downloads -v /home/pi/pyload-config:/opt/pyload/pyload-config --name pyload diegoweb/rpi-pyload
 ```
 
 
-Finally
+Web Interface
 ----
 After the docker has created you can login via the webinterface with:
 
 ```sh
+http://<RaspberryIP>:8000/
 USER=pyload
 PASSWORD=pyload
 ```
-
-
-[official pyload]:http://pyload.org/
-
+[Official pyLoad Website]:https://pyload.net/
+[here]:https://github.com/pyload/pyload/wiki/Screenshots#pyload-webinterface
