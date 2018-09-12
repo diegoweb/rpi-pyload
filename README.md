@@ -8,7 +8,7 @@ pyLoad is divided into core and clients, to make it easily remote accessible. Cu
 
 Source [Official pyLoad Website]
 
-Basic Install and Running
+Basic Install
 ----
 Install is easy as all docker images
 
@@ -16,13 +16,7 @@ Install is easy as all docker images
 docker pull diegoweb/rpi-pyload
 ```
 
-Running is easy as all docker images
-
-```sh
-docker run -d -P diegoweb/rpi-pyload
-```
-
-Configuration
+Running
 ----
 Set your UID/GID (user in docker host who will run the container), DOWNLOAD and CONFIG folders from the example below (do not forget to remove <> for each field):
 ```sh
