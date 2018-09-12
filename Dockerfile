@@ -22,8 +22,8 @@ RUN apt-get update || apt-get update \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
 	
-RUN addgroup -g ${GID} pyload \
-	&& adduser -u ${UID} -h /opt/pyload -H -G pyload -s /bin/sh -D pyload
+RUN groupadd --gid ${GID} pyload \
+	&& useradd --uid ${UID} --gid ${GID} --shell /bin/bash --create-home pyload
 
 ADD unrar_4.1.4-1+deb7u1_armhf.deb /tmp/unrar.deb
 
