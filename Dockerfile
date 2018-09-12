@@ -1,5 +1,7 @@
 FROM resin/armv7hf-debian:stretch
 
+RUN [ "cross-build-start" ]
+
 RUN apt-get update \
 	&& apt-get upgrade --force-yes --yes \
 	&& apt-get install -y python \
@@ -32,3 +34,5 @@ EXPOSE 8000 7227
 VOLUME ["/opt/pyload/pyload-config", "/opt/pyload/Downloads"]
 
 CMD ["/run.sh"]
+
+RUN [ "cross-build-end" ]  
