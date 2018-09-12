@@ -2,7 +2,7 @@ FROM resin/armv7hf-debian:stretch
 
 RUN [ "cross-build-start" ]
 
-RUN apt-get update \
+RUN apt-get update || apt-get update \
 	&& apt-get upgrade --force-yes --yes \
 	&& apt-get install -y python \
 		python-pycurl \
