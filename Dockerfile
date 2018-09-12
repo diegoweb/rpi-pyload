@@ -1,6 +1,8 @@
 FROM resin/armv7hf-debian:stretch
 
 RUN [ "cross-build-start" ]
+ARG UID=1000
+ARG GID=1000
 
 RUN apt-get update || apt-get update \
 	&& apt-get upgrade --force-yes --yes \
@@ -19,6 +21,9 @@ RUN apt-get update || apt-get update \
 	&& apt-get -y autoclean \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
+	
+RUN addgroup -g ${GID} pyload \
+  && adduser -u ${UID} -h /opt/pyload -H -G pyload -s /bin/sh -D pyload
 
 ADD unrar_4.1.4-1+deb7u1_armhf.deb /tmp/unrar.deb
 
