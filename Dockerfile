@@ -1,4 +1,4 @@
-FROM armv7/armhf-debian
+FROM resin/armv7hf-debian:stretch
 
 RUN apt-get update \
 	&& apt-get upgrade --force-yes --yes \
