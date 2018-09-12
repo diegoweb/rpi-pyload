@@ -18,16 +18,19 @@ docker pull diegoweb/rpi-pyload
 
 Running
 ----
-Set your UID/GID (user in docker host who will run the container), DOWNLOAD and CONFIG folders from the example below (do not forget to remove <> for each field):
-```sh
-docker run -d -p 8000:8000 -p 7227:7227 -e UID=<uid> -e GID=<gid> -v <download_folder>:/opt/pyload/Downloads -v <config_folder>:/opt/pyload/pyload-config --name pyload diegoweb/rpi-pyload
-```
 
-In Raspberry Pi for example, if you are running Raspbian Default Image, you can use:
+Just run the command below:
 ```sh
 docker run -d -p 8000:8000 -p 7227:7227 -e UID=1000 -e GID=1000 -v /home/pi/downloads:/opt/pyload/Downloads -v /home/pi/pyload-config:/opt/pyload/pyload-config --name pyload diegoweb/rpi-pyload
 ```
 
+What you can modify and explanation of each editable field:
+* **8000:8000** -> Local access port
+* **7227:7227** -> External access port
+* **UID** -> User ID (set the same as you use in your host docker, default is 1000)
+* **GID** -> Group ID (set the same as you use in your host docker, default is 1000)
+* **/home/pi/downloads** -> This is the path to your download directory in host docker
+* **/home/pi/pyload-config** -> This is the path to save the persistent config, if you need to erase or update the container, this will remain.
 
 Web Interface
 ----
@@ -38,5 +41,27 @@ http://<RaspberryIP>:8000/
 USER=pyload
 PASSWORD=pyload
 ```
+
+Credits and Thanks
+----
+This build is a fork from [mrtestone/rpi-pyload], but everyone down below is responsible to make this build to be achieved. Thank them! 
+
+[obi12341/docker-pyload]
+
+[dastrasmue/rpi-pyload]
+
+[andresmoschini/rpi-pyload]
+
+[mrtestone/rpi-pyload]
+
+
+And a special thank to [pyload/pyload] contributors, you can check all extended credits of [pyLoad project here]!
+
 [Official pyLoad Website]:https://pyload.net/
 [here]:https://github.com/pyload/pyload/wiki/Screenshots#pyload-webinterface
+[obi12341/docker-pyload]:https://github.com/obi12341/docker-pyload
+[dastrasmue/rpi-pyload]:https://github.com/dastrasmue/rpi-pyload
+[andresmoschini/rpi-pyload]:https://github.com/andresmoschini/rpi-pyload
+[mrtestone/rpi-pyload]:https://github.com/mrtestone/rpi-pyload
+[pyload/pyload]:https://github.com/pyload/pyload
+[pyLoad project here]:https://github.com/pyload/pyload/blob/master/CREDITS.md
