@@ -1,4 +1,4 @@
-FROM balenalib/armv7hf-debian:stretch-run
+FROM balenalib/armv7hf-debian:stretch-build
 
 RUN [ "cross-build-start" ]
 ARG UID=1000
@@ -6,7 +6,7 @@ ARG GID=1000
 
 RUN apt-get update || apt-get update \
 	&& apt-get upgrade --force-yes --yes \
-	&& apt-get install -y python \
+	&& apt-get install --force-yes --yes python \
 		python-pycurl \
 		python-crypto \
 		tesseract-ocr \
