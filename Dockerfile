@@ -30,7 +30,7 @@ ADD unrar_4.1.4-1+deb7u1_armhf.deb /tmp/unrar.deb
 RUN dpkg -i /tmp/unrar.deb && rm /tmp/unrar.deb
 
 ADD run.sh /run.sh
-RUN git clone -b stable https://github.com/pyload/pyload.git /opt/pyload \
+RUN git clone -b develop https://github.com/pyload/pyload.git /opt/pyload \
 	&& echo "/opt/pyload/pyload-config" > /opt/pyload/module/config/configdir \
 	&& chmod +x /run.sh
 ADD pyload-config/ /tmp/pyload-config
