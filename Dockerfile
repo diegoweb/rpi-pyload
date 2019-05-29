@@ -1,4 +1,4 @@
-FROM resin/armv7hf-debian:stretch
+FROM balenalib/armv7hf-debian:stretch-run
 
 RUN [ "cross-build-start" ]
 ARG UID=1000
