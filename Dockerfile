@@ -1,4 +1,4 @@
-FROM arm32v7/alpine:latest
+FROM balenalib/armv7hf-alpine-node
 
 RUN [ "cross-build-start" ]
 ARG UID=1000
