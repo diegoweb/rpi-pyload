@@ -1,4 +1,4 @@
-FROM balenalib/armv7hf-debian:stretch-build
+FROM arm32v7/alpine:latest
 
 RUN [ "cross-build-start" ]
 ARG UID=1000
